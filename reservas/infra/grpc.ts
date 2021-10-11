@@ -13,9 +13,9 @@ const options = {
   };
 const caminho = path.resolve(__dirname, '../../../../../locadoras/dist/proto/locadoras.proto')
 const protoObject = protoLoader.loadSync(caminho, options)
-const LocadoraService = grpc.loadPackageDefinition(protoObject).LocadoraService
+const pacote = grpc.loadPackageDefinition(protoObject)
 
-const client = new LocadoraService('localhost:50051', grpc.credentials.createInsecure())
-
+const client = new pacote.locadoras.LocadoraService('localhost:50051', grpc.credentials.createInsecure())
+console.log(client)
 
 export default client

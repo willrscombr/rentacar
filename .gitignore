@@ -1,6 +1,6 @@
-/locadoras/dist
-/locadoras/node_modules
+locadoras/dist
+locadoras/node_modules
 
 
-/reservas/dist
-/reservas/node_modules
+reservas/dist
+reservas/node_modules

@@ -26,6 +26,12 @@
 
 - TDD
 
+### Arquiteturas e Design
+
+- DDD
+
+
+
 
 
 ## Estórias de usuário
@@ -35,3 +41,10 @@
 - Como motorista desejo informar data de aluguel e local de retirada do veículo e saber o valor do aluguel na locadora mais barata.
 - Como motorisda desejo que depois de buscar os dados dos veículos nas locadores, mostre as classes dos veículos com o menor preço e ao selecionar a classe
 liste os veículos em ordem crescente de preço informando a locadora, o veículo e o preço.
+
+
+### Domínios
+
+ - Reservas
+ - Locadoras
+ - Veiculos
