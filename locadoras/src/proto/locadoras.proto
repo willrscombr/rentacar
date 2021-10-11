@@ -1,0 +1,24 @@
+syntax = 'proto3';
+package locadoras;
+
+service LocadoraService{
+
+    rpc buscarVeiculosParaLocacaoPorPeriodo(VeiculosRequest) returns (VeiculosResponse) {};
+}
+
+message VeiculosRequest {
+
+    string dataInicio = 1;
+    string dataFim = 2;
+    string cidade = 3;
+}
+
+
+message VeiculosResponse{
+    
+    string nomeLocadora = 1;
+    string nomeVeiculo = 2;
+    string precoDiaria = 3;
+}
+
+
