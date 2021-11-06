@@ -34,3 +34,26 @@ services:
       CONTROL_CENTER_BOOTSTRAP_SERVERS: 'kafka:9092'
       CONTROL_CENTER_REPLICATION_FACTOR: 1
       PORT: 9021
+  
+  keyclock:
+    image: quay.io/keycloak/keycloak:15.0.2
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - DB_VENDOR=h2
+    ports:
+      - 8080:8080
+
+
+  auth:
+    build: ./autenticacao/docker
+    #entrypoint: ./autenticacao/docker/entrypoint.sh
+    ports:
+      - 3001:3000
+    volumes:
+      - ./autenticacao/ui:/home/node/app
+    extra_hosts: 
+      - "host.docker.internal:172.17.0.1"
+    depends_on:
+      - keyclock
+    tty: true
