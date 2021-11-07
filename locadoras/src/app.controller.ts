@@ -1,5 +1,5 @@
 import { Metadata, ServerUnaryCall } from '@grpc/grpc-js';
-import { Controller, Inject, Post } from '@nestjs/common';
+import { Controller, Inject, Post, Get } from '@nestjs/common';
 import { ClientKafka, GrpcMethod } from '@nestjs/microservices';
 import { AppService } from './app.service';
 
@@ -21,5 +21,11 @@ export class AppController {
   cadastrarVeiculoLocadoraDisponivel(){
     this.client.emit("CARRO_DISPONIVEL_LOCADORA", {"empresa": "Locailiza", carro: "GOL"})
     return "foi"
+  }
+
+  @Get("/locadoras")
+  listarLocadoras(){
+
+    return this.appService.listarLocadoras()
   }
 }

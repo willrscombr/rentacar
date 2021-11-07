@@ -1,3 +1,4 @@
+import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { join } from 'path';
@@ -17,6 +18,7 @@ async function bootstrap() {
   
 
   await app.startAllMicroservices();
-  await app.listen(3001);
+  app.enableCors({  'origin': '*'})
+  await app.listen(3000);
 }
 bootstrap();
