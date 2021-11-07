@@ -57,3 +57,32 @@ services:
     depends_on:
       - keyclock
     tty: true
+
+  locadoras:
+    build: ./locadoras/docker
+    #entrypoint: ./autenticacao/docker/entrypoint.sh
+    command: ['yarn','start:dev']
+    ports:
+      - 3002:3000
+    volumes:
+      - ./locadoras:/home/node/app
+    extra_hosts: 
+      - "host.docker.internal:172.17.0.1"
+    depends_on:
+      - keyclock
+    tty: true
+
+
+  reservas:
+    build: ./reservas/docker
+    #entrypoint: ./autenticacao/docker/entrypoint.sh
+    command: "yarn dev"
+    ports:
+      - 3003:3000
+    volumes:
+      - ./reservas:/home/node/app
+    extra_hosts: 
+      - "host.docker.internal:172.17.0.1"
+    depends_on:
+      - keyclock
+    tty: true
