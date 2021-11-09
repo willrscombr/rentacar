@@ -27,5 +27,6 @@ export class AppController {
   listarLocadoras(){
 
     return this.appService.listarLocadoras()
+ 
   }
 }
