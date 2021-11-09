@@ -12,18 +12,44 @@ import styles from '../styles/Home.module.css'
 import {DateTimePicker} from '@mui/lab';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import { Autocomplete, Card, CardActions, CardContent, Container, Grid, TextField, AppBar } from '@mui/material';
+import { Autocomplete, Card, CardActions, CardContent, Container, Grid, TextField, AppBar, RadioGroup, FormControlLabel, Radio, FormControl } from '@mui/material';
 
 import {listarLocadoras, LocadoraResp} from "../locadoras/service"
+import { useFormik,  } from 'formik';
+
+
+
+ 
 
 interface props { locadoras: [LocadoraResp]}
 
 const Home: React.FC<props> = ({locadoras}) => { 
 
-  
+  const formik = useFormik({
 
-  const [dataHoraRetirada, setDataHoraRetirada] = React.useState(null)
-  const [dataHoraDevolucao, setDataHoraDevolucao] = React.useState(null)
+    initialValues: {
+
+      cidade: 'cwb',
+
+      dataHoraRetirada: new Date(),
+
+      dataHoraDevolucao: new Date(),
+
+    },
+
+    onSubmit: values => {
+
+      alert(JSON.stringify(values, null, 2));
+
+    },
+
+  });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    formik.setFieldValue("cidade", (event.target as HTMLInputElement).value);
+  };
+
+
 
   return (
 
@@ -75,29 +101,36 @@ const Home: React.FC<props> = ({locadoras}) => {
             <Typography variant="h5">
               Retire seu carro em: 
             </Typography>
+          <form onSubmit={formik.handleSubmit}>
+          <RadioGroup sx={ {flexDirection: 'row'}}
+              aria-label="Cidade"
+              defaultValue="Curitiba"
+              name="radio-buttons-cidade"
+              value={formik.values.cidade}
+              onChange={handleChange}
+            >
+              <FormControlLabel value="cwb" control={<Radio />} label="Curitiba" />
+              <FormControlLabel value="gyn" control={<Radio />} label="Goiânia" />
+            </RadioGroup>
 
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            options={["Goiânia", "Curitiba"]}
-            sx={{ width: 300 }}
-            renderInput={(params: any) => <TextField {...params} label="Cidades" />}
-            />
+       
             <DateTimePicker
             label="Data e Hora da retirada"
-            value={dataHoraRetirada}
-            onChange={()=>console.log('foi')}
+            value={formik.values.dataHoraRetirada}
+            onChange={formik.handleChange}
             renderInput={(params:any) => <TextField {...params} />}
           />
           <DateTimePicker
             label="Data e Hora da devolução"
-            value={dataHoraDevolucao}
-            onChange={()=>console.log('foi')}
+            value={formik.values.dataHoraDevolucao}
+            onChange={formik.handleChange}
             renderInput={(params:any) => <TextField {...params} />}
           />
+            <Button variant="contained" type="submit">Pesquisar</Button>
+        </form>
         </Box>
 
-        <Button variant="contained">Pesquisar</Button>
+      
         </CardContent>
         
       </Card>
