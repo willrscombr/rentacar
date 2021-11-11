@@ -14,8 +14,10 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { Autocomplete, Card, CardActions, CardContent, Container, Grid, TextField, AppBar, RadioGroup, FormControlLabel, Radio, FormControl } from '@mui/material';
 
-import {listarLocadoras, LocadoraResp} from "../locadoras/service"
+import {listarLocadoras, LocadoraResp} from "../hooks/locadoras/service"
 import { useFormik,  } from 'formik';
+import { useRouter } from 'next/dist/client/router';
+
 
 
 
@@ -24,7 +26,7 @@ import { useFormik,  } from 'formik';
 interface props { locadoras: [LocadoraResp]}
 
 const Home: React.FC<props> = ({locadoras}) => { 
-
+  const router = useRouter()
   const formik = useFormik({
 
     initialValues: {
@@ -38,9 +40,10 @@ const Home: React.FC<props> = ({locadoras}) => {
     },
 
     onSubmit: values => {
-
-      alert(JSON.stringify(values, null, 2));
-
+      const  {cidade, dataHoraRetirada, dataHoraDevolucao} = values
+      const url = `/reservas?cidade=${cidade}&dataHoraRetirada=${dataHoraRetirada.toISOString()}&dataHoraDevolucao=${dataHoraDevolucao.toISOString()}`
+      router.push(url)
+     
     },
 
   });
