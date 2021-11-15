@@ -17,6 +17,7 @@ import { Autocomplete, Card, CardActions, CardContent, Container, Grid, TextFiel
 import {listarLocadoras, LocadoraResp} from "../hooks/locadoras/service"
 import { useFormik,  } from 'formik';
 import { useRouter } from 'next/dist/client/router';
+import Navbar from 'components/navbar';
 
 
 
@@ -65,22 +66,7 @@ const Home: React.FC<props> = ({locadoras}) => {
       </Head>
     
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" color="default">
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-            </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Rent a car - Protótipo
-            </Typography>
-            <Button color="inherit">Login</Button>
-          </Toolbar>
-        </AppBar>
+        <Navbar/>
       </Box>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Container>

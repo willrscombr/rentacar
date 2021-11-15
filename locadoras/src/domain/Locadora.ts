@@ -1,7 +1,7 @@
 export default class Locadora{
 
 
-    constructor( private nome:String, private logo: String){}
+    constructor( private nome:String, private logo: String, private urlCarrosDisnopiveis = null){}
 
     getNome(){
         return this.nome
@@ -9,5 +9,9 @@ export default class Locadora{
 
     getLogo(){
         return this.logo
+    }
+
+    getUrlCarrosDisponiveis(){
+        return this.urlCarrosDisnopiveis
     }
 }
