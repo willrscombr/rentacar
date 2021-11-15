@@ -59,13 +59,22 @@ services:
     tty: true
 
   locadoras:
-    build: ./locadoras/docker
-    #entrypoint: ./autenticacao/docker/entrypoint.sh
-    command: ['yarn','start:dev']
-    ports:
-      - 3002:3000
+    build:
+      dockerfile: Dockerfile
+      context: ./locadoras
+      # Only will build development stage from our dockerfile
+      target: development
+    # Mount our host Directory to the docker container
+    # Mount (.) current directory to the docker container /home/node/app
+    # reflect file changes from host to container
     volumes:
       - ./locadoras:/home/node/app
+      - ./home/node/app/node_modules
+    # Run in Debug Mode: npm run start:debug --> Don't forget to start your vscode debugger!
+    # Run in dev Mode: npm run start:dev
+    command: npm run start:dev
+    ports:
+      - 3002:3000
     extra_hosts: 
       - "host.docker.internal:172.17.0.1"
     depends_on:
@@ -74,15 +83,20 @@ services:
 
 
   reservas:
-    build: ./reservas/docker
+    build:
+      dockerfile: Dockerfile
+      context: ./reservas
+      target: development
     #entrypoint: ./autenticacao/docker/entrypoint.sh
-    command: "yarn dev"
+    command: "npm run dev"
     ports:
       - 3003:3000
     volumes:
       - ./reservas:/home/node/app
+      - /home/node/app/node_modules
+      - /home/node/app/.next
     extra_hosts: 
       - "host.docker.internal:172.17.0.1"
     depends_on:
-      - keyclock
+      - locadoras
     tty: true
