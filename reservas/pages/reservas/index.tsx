@@ -23,8 +23,8 @@ export default function Reservas(){
             <Grid container>
                 <Grid item xs={12}>
                     {reservas.map( reserva => {
-                        return <Card variant="elevation" 
-                        sx={{marginBottom: 10, padding: 5}}  >
+                        return <Box  borderColor="primary.main"   ><Card variant="elevation" 
+                        sx={{marginBottom: 8, padding: 4}}>
                                <Typography variant="h2">
                                      { reserva.veiculoNome }
                                 </Typography>
@@ -40,7 +40,7 @@ export default function Reservas(){
                                      { reserva.localRetirada}  
                                  </Typography>
                               
-                               </Card>
+                               </Card></Box>
                     })}
                     
                 </Grid>

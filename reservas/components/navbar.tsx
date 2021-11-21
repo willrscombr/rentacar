@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function Navbar(){
     return(
-    <AppBar position="static" color="default">
+    <AppBar position="static" color="default" sx={{marginBottom: 8}}>
         <Toolbar>
         <IconButton
             size="large"
@@ -13,8 +13,8 @@ export default function Navbar(){
             sx={{ mr: 2 }}
         >
         </IconButton>
-        <Link href="/">
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Link href="/" >
+            <Typography variant="h6" component="div" color="primary.main" sx={{ flexGrow: 1, cursor: 'pointer' }}>
                 Rent a car - Protótipo
             </Typography>
         </Link>
