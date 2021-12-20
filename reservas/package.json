@@ -16,16 +16,19 @@
     "@mui/icons-material": "^5.0.3",
     "@mui/lab": "^5.0.0-alpha.53",
     "@mui/material": "^5.0.3",
+    "cheerio": "^1.0.0-rc.10",
     "date-fns": "^2.25.0",
     "formik": "^2.2.9",
     "next": "11.1.2",
+    "puppeteer": "^12.0.1",
+    "puppeteer-core": "^12.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "swr": "^1.0.1"
   },
   "devDependencies": {
-    "@types/react": "17.0.27",
     "@types/protobufjs": "^6.0.0",
+    "@types/react": "17.0.27",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "typescript": "4.4.3"

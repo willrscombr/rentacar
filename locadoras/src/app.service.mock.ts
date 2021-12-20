@@ -3,9 +3,14 @@ import { IAppService } from './app.service.interface';
 import Locadora from './domain/Locadora';
 
 @Injectable()
-export class AppService implements IAppService {
+export class AppServiceMock implements IAppService {
 
   private locadoras = [];
+
+  getHello(): string {
+    return 'Hello World!';
+  }
+
 
   listarLocadoras(){
 

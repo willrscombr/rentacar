@@ -1,5 +1,14 @@
 version: '3'
 services:
+  sonarqube:
+    container_name:  sonarqube
+    image:  sonarqube:latest
+    ports:
+        -  "9000:9000"
+        -  "9092:9092"
+    environment:
+      - USER=admin
+      - PASS=Admin
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     environment:
@@ -10,8 +19,8 @@ services:
     depends_on:
       - zookeeper
     ports:
-      - "9092:9092"
-      - "9094:9094"
+      - "9092"
+      - "9094"
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
@@ -47,6 +56,7 @@ services:
 
   auth:
     build: ./autenticacao/docker
+    command: npm run start:dev
     #entrypoint: ./autenticacao/docker/entrypoint.sh
     ports:
       - 3001:3000
@@ -67,6 +77,8 @@ services:
     # Mount our host Directory to the docker container
     # Mount (.) current directory to the docker container /home/node/app
     # reflect file changes from host to container
+    environment:
+      - TOKEN_SONAR=c21430ccf6cf40fcdaebaf8bd4a9f6c7dfe704ed
     volumes:
       - ./locadoras:/home/node/app
       - ./home/node/app/node_modules
@@ -100,3 +112,15 @@ services:
     depends_on:
       - locadoras
     tty: true
+
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: ./apimanagement
+    volumes:
+      - ./apimanagement/conf:/etc/nginx/
+    ports:
+      - "80:80"
+    environment:
+      - NGINX_HOST=foobar.com
+      - NGINX_PORT=80

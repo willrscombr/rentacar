@@ -138,7 +138,7 @@ const Home: React.FC<props> = ({ locadoras }) => {
 
 
                       <Grid container >
-                        {locadoras && locadoras.map((locadora, key) =>
+                        {locadoras.length > 0 && locadoras.map((locadora, key) =>
 
                           <Grid item sx={{ padding: '20px' }} key={key}>
                             <Box sx={{ 'display': 'flex', flexDirection: 'column', textAlign: 'center' }}>

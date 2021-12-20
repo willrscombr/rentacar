@@ -1,0 +1,1 @@
+docker run  --rm  -e SONAR_HOST_URL="http://localhost:9000 "  -e SONAR_LOGIN="c21430ccf6cf40fcdaebaf8bd4a9f6c7dfe704ed" -e SONAR_projectKey=locadoras  -v "C:\Users\WW\Documents\GitHub\rentacar\locadoras:/usr/src" sonarsource/sonar-scanner-cli

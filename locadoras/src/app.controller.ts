@@ -1,32 +1,34 @@
 import { Metadata, ServerUnaryCall } from '@grpc/grpc-js';
 import { Controller, Inject, Post, Get, Param } from '@nestjs/common';
 import { ClientKafka, GrpcMethod } from '@nestjs/microservices';
+
 import { v4 as uuidv4 } from 'uuid';
 import { AppService } from './app.service';
+import { IAppService } from './app.service.interface';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService,
-    @Inject('KAFKA_SERVICE') private readonly client: ClientKafka
+  constructor(@Inject('IAppService')private readonly appService: IAppService,
+    // @Inject('KAFKA_SERVICE') private readonly client: ClientKafka
   ) { }
 
-  @GrpcMethod('LocadoraService', 'buscarVeiculosParaLocacaoPorPeriodo')
-  buscarVeiculosParaLocacaoPorPeriodo(data, metadata: Metadata, call: ServerUnaryCall<any, any>) {
+  // @GrpcMethod('LocadoraService', 'buscarVeiculosParaLocacaoPorPeriodo')
+  // buscarVeiculosParaLocacaoPorPeriodo(data, metadata: Metadata, call: ServerUnaryCall<any, any>) {
 
-    console.log('dados', data)
-    return {
-      id: 1, nomeLocadora: "LOClALIZA", nomeVeiculo: "Fiat Uno 1",
-      precoDiaria: "100,00"
-    }
-  }
+  //   console.log('dados', data)
+  //   return {
+  //     id: 1, nomeLocadora: "LOClALIZA", nomeVeiculo: "Fiat Uno 1",
+  //     precoDiaria: "100,00"
+  //   }
+  // }
 
-  @Post("/veiculos")
-  cadastrarVeiculoLocadoraDisponivel() {
-    this.client.emit("CARRO_DISPONIVEL_LOCADORA", { "empresa": "Locailiza", carro: "GOL" })
-    return "foi"
-  }
+  // @Post("/veiculos")
+  // cadastrarVeiculoLocadoraDisponivel() {
+  //   this.client.emit("CARRO_DISPONIVEL_LOCADORA", { "empresa": "Locailiza", carro: "GOL" })
+  //   return "foi"
+  // }
 
-  @Get("/locadoras")
+
   listarLocadoras() {
 
     return this.appService.listarLocadoras()
