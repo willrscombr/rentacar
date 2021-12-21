@@ -2,18 +2,18 @@ import { Module, PayloadTooLargeException } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
-import { IAppService } from './app.service.interface';
 import { AppService } from './app.service';
-import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from './auth/auth.module';
+
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    JwtModule.register({
-      secret: process.env.KEYCLOck_CLIENTE_SECRET,
-     
-    }),
+    
+    // JwtModule.register({
+    //   publicKey: process.env.JWT_PUBLIC_ENV,
+    //   verifyOptions: { algorithms:['RS256']}
+    // }),
     // KeycloakConnectModule.register({
     //   authServerUrl: process.env.AUTH_SERVER_URL,
     //   realm: 'Rent a Car',
@@ -42,7 +42,8 @@ import { AuthModule } from './auth/auth.module';
     {
       provide: 'IAppService',
       useClass: AppService
-    }
+    },
+  
     
 ],
 })

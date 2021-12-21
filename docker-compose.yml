@@ -81,7 +81,8 @@ services:
       - TOKEN_SONAR=c21430ccf6cf40fcdaebaf8bd4a9f6c7dfe704ed
     volumes:
       - ./locadoras:/home/node/app
-      - ./home/node/app/node_modules
+      - ./locadoras/dist:/home/node/app/dist
+      - ./locadoras/node_modules:/home/node/app/node_modules
     # Run in Debug Mode: npm run start:debug --> Don't forget to start your vscode debugger!
     # Run in dev Mode: npm run start:dev
     command: npm run start:dev

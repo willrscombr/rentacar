@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
-
 import { AppServiceMock } from './app.service.mock';
 import Locadora from './domain/Locadora';
 

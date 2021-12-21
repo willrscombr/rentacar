@@ -1,10 +1,15 @@
 import { Metadata, ServerUnaryCall } from '@grpc/grpc-js';
-import { Controller, Inject, Post, Get, Param } from '@nestjs/common';
+import { Controller, Inject, Post, Get, Param, UseGuards, Req, Res } from '@nestjs/common';
 import { ClientKafka, GrpcMethod } from '@nestjs/microservices';
+import { Request, Response } from 'express';
+
 
 import { v4 as uuidv4 } from 'uuid';
 import { AppService } from './app.service';
 import { IAppService } from './app.service.interface';
+import { JwtAuthLocalGuard } from './auth/jwt-auth-local.guard';
+import { JwtAuthGuard } from './auth/jwt-auth.guard';
+
 
 @Controller()
 export class AppController {
@@ -27,15 +32,17 @@ export class AppController {
   //   this.client.emit("CARRO_DISPONIVEL_LOCADORA", { "empresa": "Locailiza", carro: "GOL" })
   //   return "foi"
   // }
-
-
+  @UseGuards(JwtAuthGuard)
+  @Get("/locadoras")
   listarLocadoras() {
 
-    return this.appService.listarLocadoras()
 
+    return this.appService.listarLocadoras()
+    
+   
   }
 
-
+  // @UseGuards(JwtAuthGuard)
   @Get("/locadoras/:locadoraNome")
   listarVeiculosParaAlugarPorPeriodoDisponivelECidade(@Param('locadoraNome') locadora: string) {
     const possiveisReservas = [
