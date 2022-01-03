@@ -1,5 +1,4 @@
 import Link  from 'next/link'
-import { useRouter } from 'next/router'
 export default function itemNavbar({ href, text, active }){
 
     const styleDefault = "py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
@@ -7,7 +6,7 @@ export default function itemNavbar({ href, text, active }){
    
     return (
         <Link href={href}>
-            <a href="" className={active == true ? styleActive : styleDefault}>{text}</a>
+            <a href="" className={active ? styleActive : styleDefault}>{text}</a>
         </Link>
        
     )
