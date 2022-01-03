@@ -1,5 +1,4 @@
 
-import Link  from 'next/link'
 import { useRouter } from 'next/router';
 
 import ItemNavbar from "./ItemNavbar"
@@ -8,7 +7,7 @@ export default function Navbar() {
 	const menu = [ {href:"/", text:"Home"},{href:"/veiculos", text:"Veiculos"}]
 
 	const router = useRouter();
-    const active = router?.asPath === href ? true: false
+
   return (
     <nav className="bg-white shadow-lg">
 			<div className="max-w-6xl mx-auto px-4">
