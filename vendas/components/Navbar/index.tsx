@@ -34,7 +34,7 @@ export default function Navbar() {
 				
 					<div className="hidden md:flex items-center space-x-3 ">
 						<a href="" className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300">Log In</a>
-						<a href="" className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300">Sign Up</a>
+						<a href="" className="py-2 px-2 font-medium text-white bg-gradient-to-r from-teal-300 to-green-500 rounded hover:bg-green-400 transition duration-300">Sign Up</a>
 					</div>
 				
 					<div className="md:hidden flex items-center">
